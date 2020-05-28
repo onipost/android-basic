@@ -1,0 +1,8 @@
+<resources>
+    <string name="file_provider_authorization" translatable="false">com.example.com.fileprovider</string>
+    <string name="default_notification_channel_name" translatable="false">Notifications</string>
+    <string name="default_notification_channel_id" translatable="false">com_example_notifications</string>
+
+    <string name="notification_channel_description">Some desc</string>
+    <string name="app_name">Example App</string>
+</resources>

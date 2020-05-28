@@ -1,0 +1,9 @@
+\.idea/
+\.gradle/
+*.lock
+android.iml
+app.iml
+app/build
+build
+example-android.iml
+local.properties
