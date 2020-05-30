@@ -96,6 +96,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
-    //Firebase Messaging
+    //Firebase
     implementation 'com.google.firebase:firebase-messaging:20.2.0'
+    implementation 'com.google.firebase:firebase-analytics-ktx:17.4.2'
+    implementation 'com.google.firebase:firebase-auth-ktx:19.3.1'
+    implementation 'com.google.firebase:firebase-database-ktx:19.3.0'
 }
