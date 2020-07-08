@@ -8,15 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.com.data.utils.doBackgroundObserveMain
 
-abstract class PaginatedFragment<VM : PaginatedViewModel, BINDING : ViewDataBinding> :
-    BaseFragment<VM, BINDING>(),
+abstract class PaginatedFragment<VM : PaginatedViewModel, BINDING : ViewDataBinding> : BaseFragment<VM, BINDING>(),
     SwipeRefreshLayout.OnRefreshListener {
 
     abstract val adapter: BaseAdapter
 
     abstract val layoutManager: LinearLayoutManager
 
-    abstract val stubView: View
+    abstract val emptyStub: View
 
     abstract val swipeRefresh: SwipeRefreshLayout
 
@@ -75,11 +74,11 @@ abstract class PaginatedFragment<VM : PaginatedViewModel, BINDING : ViewDataBind
 
     private fun showEmpty() {
         swipeRefresh.visibility = View.GONE
-        stubView.visibility = View.VISIBLE
+        emptyStub.visibility = View.VISIBLE
     }
 
     private fun hideEmpty() {
-        stubView.visibility = View.GONE
+        emptyStub.visibility = View.GONE
         swipeRefresh.visibility = View.VISIBLE
     }
 }
