@@ -1,4 +1,4 @@
-package com.example.com.presentation.ui.base
+package pro.onipost.libraries.base_ui.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -9,20 +9,13 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.CallSuper
 import androidx.annotation.Nullable
-import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import com.example.com.BR
-import com.example.com.R
-import com.example.com.presentation.router.Router
-import com.example.com.data.utils.doBackgroundObserveMain
-import com.example.com.presentation.dialogs.AlertDialogFragment
-import com.example.com.presentation.router.popBackStack
 import dagger.android.support.AndroidSupportInjection
-import io.reactivex.disposables.CompositeDisposable
+import pro.onipost.libraries.base_ui.R
 import javax.inject.Inject
-
 
 abstract class BaseFragment<VIEW_MODEL : BaseViewModel, BINDING : ViewDataBinding> : Fragment() {
 
@@ -108,53 +101,16 @@ abstract class BaseFragment<VIEW_MODEL : BaseViewModel, BINDING : ViewDataBindin
     }
 
     private fun showToast(error: String, length: Int = Toast.LENGTH_LONG) {
-        if (!isDetached) {
-            toast?.cancel()
-            toast = Toast.makeText(requireContext(), error, length)
-            toast?.show()
-        }
+        toast?.cancel()
+        toast = Toast.makeText(requireContext(), error, length).apply { show() }
     }
 
     protected fun showErrorAlert(error: String) {
-        if (!isDetached && !isStateSaved) {
-            AlertDialogFragment.Builder(requireContext(), 200)
-                .withTitle("Error")
-                .withMessage(error)
-                .withConfirm(R.string.app_name)
-                .build()
-                .show(childFragmentManager, DIALOG_ERROR_TAG)
-        }
-    }
-
-    protected fun showAlert(
-        @StringRes title: Int = 0,
-        @StringRes message: Int = 0,
-        @StringRes confirm: Int = 0,
-        @StringRes decline: Int = 0,
-        code: Int = 0,
-        tag: String = this::class.java.name,
-        listener: AlertDialogFragment.AlertDialogClickListener? = null
-    ) {
-        val messageString = if (message != 0) getString(message) else ""
-        showAlert(title, messageString, confirm, decline, code, tag, listener)
-    }
-
-    protected fun showAlert(
-        @StringRes title: Int = 0,
-        message: String = "",
-        @StringRes confirm: Int = 0,
-        @StringRes decline: Int = 0,
-        code: Int = 0,
-        tag: String = this::class.java.name,
-        listener: AlertDialogFragment.AlertDialogClickListener? = null
-    ) {
-        val builder = AlertDialogFragment.Builder(requireContext(), code)
-        if (title != 0) builder.withTitle(title)
-        if (message != "") builder.withMessage(message)
-        if (confirm != 0) builder.withConfirm(confirm)
-        if (decline != 0) builder.withDecline(decline)
-        if (listener != null) builder.withListener(listener)
-        builder.build().show(childFragmentManager, tag)
+        AlertDialog.Builder(requireContext())
+            .setTitle("Error")
+            .setMessage(error)
+            .setPositiveButton("Ok") { dialog, _ -> dialog?.dismiss() }
+            .show()
     }
 
     private fun backPressedOverrided() =

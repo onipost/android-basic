@@ -1,2 +1,2 @@
 rootProject.name='UdderPro'
-include ':app'
+include ':app', ':base-ui'
