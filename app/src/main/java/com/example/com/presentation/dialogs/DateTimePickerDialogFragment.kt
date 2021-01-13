@@ -10,9 +10,10 @@ import android.widget.DatePicker
 import android.widget.TimePicker
 import androidx.fragment.app.DialogFragment
 import java.io.Serializable
-import java.util.*
+import java.util.Calendar
 
-class DateTimePickerDialogFragment : DialogFragment(),
+class DateTimePickerDialogFragment :
+    DialogFragment(),
     DatePickerDialog.OnDateSetListener,
     TimePickerDialog.OnTimeSetListener {
 
@@ -71,7 +72,6 @@ class DateTimePickerDialogFragment : DialogFragment(),
         calendar.get(Calendar.MONTH),
         calendar.get(Calendar.DAY_OF_MONTH)
     ).apply {
-
     }
 
     private fun unpackArguments(arguments: Bundle) {

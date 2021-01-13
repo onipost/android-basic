@@ -6,13 +6,14 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.subjects.PublishSubject
 import com.example.com.data.entity.other.AppError
 import com.example.com.presentation.App
 import com.example.com.presentation.router.Router
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.subjects.PublishSubject
 
-abstract class BaseViewModel(application: Application) : AndroidViewModel(application),
+abstract class BaseViewModel(application: Application) :
+    AndroidViewModel(application),
     LifecycleObserver {
 
     protected val disposable = CompositeDisposable()

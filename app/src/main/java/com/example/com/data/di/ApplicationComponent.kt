@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.example.com.data.entity.other.InitializationStatus
 import com.example.com.data.rxbus.RxBus
-import com.example.com.domain.repository.*
+import com.example.com.domain.repository.ExampleRepository
 import com.example.com.presentation.App
 import dagger.BindsInstance
 import dagger.Component

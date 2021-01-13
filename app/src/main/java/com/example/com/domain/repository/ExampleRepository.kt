@@ -1,7 +1,7 @@
 package com.example.com.domain.repository
 
-import io.reactivex.Flowable
 import com.example.com.data.entity.database.ExampleEntity
+import io.reactivex.Flowable
 
 /**
  * Example of repository interface.

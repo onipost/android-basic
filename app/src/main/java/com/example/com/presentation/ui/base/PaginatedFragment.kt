@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.com.data.utils.doBackgroundObserveMain
 
-abstract class PaginatedFragment<VM : PaginatedViewModel, BINDING : ViewDataBinding> : BaseFragment<VM, BINDING>(),
+abstract class PaginatedFragment<VM : PaginatedViewModel, BINDING : ViewDataBinding> :
+    BaseFragment<VM, BINDING>(),
     SwipeRefreshLayout.OnRefreshListener {
 
     abstract val adapter: BaseAdapter
@@ -32,13 +33,15 @@ abstract class PaginatedFragment<VM : PaginatedViewModel, BINDING : ViewDataBind
         recyclerView.let {
             it.layoutManager = layoutManager
             it.adapter = adapter
-            it.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    val lastItem = layoutManager.findLastVisibleItemPosition()
-                    val itemsCount: Int = layoutManager.itemCount
-                    if (lastItem >= itemsCount - 3) viewModel.nextPage()
+            it.addOnScrollListener(
+                object : RecyclerView.OnScrollListener() {
+                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                        val lastItem = layoutManager.findLastVisibleItemPosition()
+                        val itemsCount: Int = layoutManager.itemCount
+                        if (lastItem >= itemsCount - 3) viewModel.nextPage()
+                    }
                 }
-            })
+            )
         }
     }
 
@@ -57,18 +60,24 @@ abstract class PaginatedFragment<VM : PaginatedViewModel, BINDING : ViewDataBind
     override fun subscribeOnViewModel() {
         super.subscribeOnViewModel()
         with(disposable) {
-            add(viewModel.isRefresh
-                .doBackgroundObserveMain()
-                .subscribe {
-                    if (!it) layoutManager.scrollToPosition(0)
-                    swipeRefresh.isRefreshing = it
-                })
-            add(viewModel.isEmpty
-                .doBackgroundObserveMain()
-                .subscribe { if (it) showEmpty() else hideEmpty() })
-            add(viewModel.data
-                .doBackgroundObserveMain()
-                .subscribe { adapter.items = ArrayList(it) })
+            add(
+                viewModel.isRefresh
+                    .doBackgroundObserveMain()
+                    .subscribe {
+                        if (!it) layoutManager.scrollToPosition(0)
+                        swipeRefresh.isRefreshing = it
+                    }
+            )
+            add(
+                viewModel.isEmpty
+                    .doBackgroundObserveMain()
+                    .subscribe { if (it) showEmpty() else hideEmpty() }
+            )
+            add(
+                viewModel.data
+                    .doBackgroundObserveMain()
+                    .subscribe { adapter.items = ArrayList(it) }
+            )
         }
     }
 

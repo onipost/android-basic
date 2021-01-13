@@ -1,6 +1,8 @@
 package com.example.com.data.utils
 
 import android.content.Context
+import com.example.com.data.entity.other.AppError
+import com.example.com.data.entity.other.InitializationStatus
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -8,8 +10,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
-import com.example.com.data.entity.other.AppError
-import com.example.com.data.entity.other.InitializationStatus
 
 fun <T> Flowable<T>.doBackgroundObserveMain(): Flowable<T> {
     return this.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())

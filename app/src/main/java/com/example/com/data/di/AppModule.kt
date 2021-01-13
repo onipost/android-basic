@@ -3,21 +3,21 @@ package com.example.com.data.di
 import android.app.Application
 import android.content.Context
 import androidx.room.Room
-import dagger.Module
-import dagger.Provides
-import io.reactivex.subjects.BehaviorSubject
-import javax.inject.Named
 import com.example.com.data.Config
 import com.example.com.data.api.di.NetworkModule
 import com.example.com.data.database.AppDB
 import com.example.com.data.entity.other.InitializationStatus
-import com.example.com.data.repository.di.*
+import com.example.com.data.repository.di.ExampleRepositoryModule
 import com.example.com.data.rxbus.RxBus
 import com.example.com.data.utils.inProgress
 import com.example.com.presentation.di.UiInjects
 import com.example.com.presentation.router.Router
 import com.example.com.presentation.utils.NotificationChannelBuilder
 import com.example.com.presentation.utils.network_connectivity.NetworkConnectivityManager
+import dagger.Module
+import dagger.Provides
+import io.reactivex.subjects.BehaviorSubject
+import javax.inject.Named
 
 @Module(
     includes = [
@@ -64,5 +64,4 @@ class AppModule(private val application: Application) {
     @Provides
     fun provideInitStatus(): BehaviorSubject<InitializationStatus> =
         BehaviorSubject.create<InitializationStatus>().apply { inProgress() }
-
 }

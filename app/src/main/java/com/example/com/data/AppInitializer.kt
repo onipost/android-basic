@@ -1,13 +1,13 @@
 package com.example.com.data
 
 import android.content.Context
+import com.example.com.data.entity.other.InitializationStatus
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.BehaviorSubject
 import javax.inject.Inject
 import javax.inject.Named
-import com.example.com.data.entity.other.InitializationStatus
 
-//TODO add to constructor some use cases for application initialization.
+// TODO add to constructor some use cases for application initialization.
 class AppInitializer @Inject constructor(
     @Named("app_context")
     private val context: Context,

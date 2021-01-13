@@ -25,7 +25,6 @@ class Router {
 
         val destination get() = type.action
     }
-
 }
 
 enum class RouteDestination(val action: Int) {

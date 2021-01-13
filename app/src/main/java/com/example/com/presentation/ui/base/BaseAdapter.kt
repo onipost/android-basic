@@ -1,6 +1,5 @@
 package com.example.com.presentation.ui.base
 
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,33 +23,38 @@ open class BaseAdapter : RecyclerView.Adapter<ViewHolder>() {
      */
     var items = arrayListOf<Any>()
         set(value) {
-            val diffCallback = DiffCallBack(items, value,
+            val diffCallback = DiffCallBack(
+                items,
+                value,
                 checkAreItemsTheSame = { oldItem: Any, newItem: Any ->
                     getCellInfo(oldItem).checkAreItemsTheSame.invoke(oldItem, newItem)
                 },
                 checkAreContentsTheSame = { oldItem: Any, newItem: Any ->
                     getCellInfo(oldItem).checkAreContentsTheSame.invoke(oldItem, newItem)
-                })
+                }
+            )
             val diffResult = DiffUtil.calculateDiff(diffCallback)
             field.clear()
             field.addAll(value)
-            diffResult.dispatchUpdatesTo(object : ListUpdateCallback {
-                override fun onInserted(position: Int, count: Int) {
-                    notifyItemRangeInserted(position, count)
-                }
+            diffResult.dispatchUpdatesTo(
+                object : ListUpdateCallback {
+                    override fun onInserted(position: Int, count: Int) {
+                        notifyItemRangeInserted(position, count)
+                    }
 
-                override fun onRemoved(position: Int, count: Int) {
-                    notifyItemRangeRemoved(position, count)
-                }
+                    override fun onRemoved(position: Int, count: Int) {
+                        notifyItemRangeRemoved(position, count)
+                    }
 
-                override fun onMoved(fromPosition: Int, toPosition: Int) {
-                    notifyItemMoved(fromPosition, toPosition)
-                }
+                    override fun onMoved(fromPosition: Int, toPosition: Int) {
+                        notifyItemMoved(fromPosition, toPosition)
+                    }
 
-                override fun onChanged(position: Int, count: Int, payload: Any?) {
-                    notifyItemRangeChanged(position, count, payload)
+                    override fun onChanged(position: Int, count: Int, payload: Any?) {
+                        notifyItemRangeChanged(position, count, payload)
+                    }
                 }
-            })
+            )
         }
 
     inline fun <reified T : Any> registerCell(
@@ -121,7 +125,6 @@ open class BaseAdapter : RecyclerView.Adapter<ViewHolder>() {
         override fun areContentsTheSame(oldPos: Int, newPos: Int) =
             checkAreContentsTheSame(oldList[oldPos], newList[newPos])
     }
-
 }
 
 /**

@@ -7,11 +7,10 @@ import android.content.Context
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import com.example.com.R
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.example.com.R
 import kotlin.random.Random
-
 
 class NotificationsMessagingService : FirebaseMessagingService() {
 
@@ -20,7 +19,7 @@ class NotificationsMessagingService : FirebaseMessagingService() {
     }
 
     override fun onNewToken(token: String) {
-        //Add token to remote database
+        // Add token to remote database
     }
 
     private fun sendNotification(message: MutableMap<String, String>) {

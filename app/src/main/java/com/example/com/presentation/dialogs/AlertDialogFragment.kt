@@ -1,23 +1,17 @@
 package com.example.com.presentation.dialogs
 
-import android.app.Dialog
-import android.content.Context
-import android.os.Bundle
-import androidx.annotation.StringRes
 import androidx.fragment.app.DialogFragment
-import com.example.com.R
-import java.io.Serializable
 
 class AlertDialogFragment : DialogFragment() {
 
-    private var listener: AlertDialogClickListener? = null
-    private var code = DEFAULT_CODE
+    // private var listener: AlertDialogClickListener? = null
+    // private var code = DEFAULT_CODE
     private var title = ""
     private var message = ""
     private var positiveButtonText = ""
     private var negativeButtonText = ""
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+    /*override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         arguments?.let { unpackArguments(it) }
         return MaterialAlertDialogBuilder(requireContext(), R.style.AlertDialogTheme).apply {
             if (title.isNotEmpty()) setTitle(title)
@@ -102,5 +96,5 @@ class AlertDialogFragment : DialogFragment() {
         AlertDialogClickListener {
 
         override fun onConfirm(code: Int) = Unit
-    }
+    }*/
 }

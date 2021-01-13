@@ -1,10 +1,10 @@
 package com.example.com.data.repository
 
-import io.reactivex.Flowable
-import com.example.com.domain.repository.ExampleRepository
 import com.example.com.data.data_source.example.ExampleCache
 import com.example.com.data.data_source.example.ExampleRemote
 import com.example.com.data.entity.database.ExampleEntity
+import com.example.com.domain.repository.ExampleRepository
+import io.reactivex.Flowable
 
 class ExampleRepositoryImpl(
     private val localSource: ExampleCache,
@@ -17,5 +17,4 @@ class ExampleRepositoryImpl(
          */
         return localSource.get(id)
     }
-
 }

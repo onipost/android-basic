@@ -1,14 +1,14 @@
 package com.example.com.data.repository.di
 
-import dagger.Module
-import dagger.Provides
-import com.example.com.domain.repository.ExampleRepository
 import com.example.com.data.api.ApiExample
 import com.example.com.data.data_source.example.ExampleCache
 import com.example.com.data.data_source.example.ExampleRemote
 import com.example.com.data.database.AppDB
-import com.example.com.data.repository.ExampleRepositoryImpl
 import com.example.com.data.di.PerApplication
+import com.example.com.data.repository.ExampleRepositoryImpl
+import com.example.com.domain.repository.ExampleRepository
+import dagger.Module
+import dagger.Provides
 
 @Module
 class ExampleRepositoryModule {

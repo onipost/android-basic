@@ -15,14 +15,13 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.example.com.BR
 import com.example.com.R
-import com.example.com.presentation.router.Router
 import com.example.com.data.utils.doBackgroundObserveMain
 import com.example.com.presentation.dialogs.AlertDialogFragment
+import com.example.com.presentation.router.Router
 import com.example.com.presentation.router.popBackStack
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
-
 
 abstract class BaseFragment<VIEW_MODEL : BaseViewModel, BINDING : ViewDataBinding> : Fragment() {
 
@@ -84,13 +83,15 @@ abstract class BaseFragment<VIEW_MODEL : BaseViewModel, BINDING : ViewDataBindin
     protected open fun subscribeOnViewModel() {
         with(disposable) {
 
-            //Subscribe on routes in view model
+            // Subscribe on routes in view model
             add(viewModel.routes.subscribe(router.handle(this@BaseFragment)))
 
-            //Subscribe on errors, this must call toast or alert dialog
-            add(viewModel.errors.doBackgroundObserveMain().subscribe {
-                if (it.isCritical) showErrorAlert(it.message) else showToast(it.message)
-            })
+            // Subscribe on errors, this must call toast or alert dialog
+            add(
+                viewModel.errors.doBackgroundObserveMain().subscribe {
+                    if (it.isCritical) showErrorAlert(it.message) else showToast(it.message)
+                }
+            )
         }
     }
 

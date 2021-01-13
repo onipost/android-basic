@@ -2,7 +2,7 @@ package com.example.com.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.com.data.database.dao.*
+import com.example.com.data.database.dao.ExampleDao
 import com.example.com.data.entity.database.ExampleEntity
 
 @Database(

@@ -21,6 +21,5 @@ object GlideLoader {
     }
 }
 
-
 @GlideModule
 class GlideModule : AppGlideModule()

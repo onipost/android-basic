@@ -39,12 +39,12 @@ class ApiError(override val code: Int, override val isCritical: Boolean = false)
     AppError("", ErrorType.API_ERROR, code, isCritical) {
 
     fun toMessage(context: Context): String {
-        //Method for parse api error code to some string
+        // Method for parse api error code to some string
         return ""
     }
 
     enum class State(val code: Int) {
-        //List for possible api error codes
+        // List for possible api error codes
     }
 }
 
